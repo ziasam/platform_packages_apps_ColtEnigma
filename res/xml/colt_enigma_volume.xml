@@ -38,4 +38,10 @@
             android:defaultValue="@string/volume_panel_aosp_val" />
     </PreferenceCategory>
 
+        <!-- Volume Steps -->
+        <PreferenceScreen
+            android:key="volume_steps"
+            android:title="@string/volume_steps_title"
+            android:fragment="com.colt.enigma.fragments.VolumeSteps" />
+
 </PreferenceScreen>
