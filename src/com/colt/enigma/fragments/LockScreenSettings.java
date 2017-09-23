@@ -37,14 +37,19 @@ import androidx.preference.PreferenceScreen;
 import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import android.hardware.fingerprint.FingerprintManager;
+import com.android.internal.util.custom.FodUtils;
 
 import com.android.internal.util.custom.FodUtils;
 
 public class LockScreenSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker";
 
+    private FingerprintManager mFingerprintManager;
+    private SwitchPreference mFingerprintVib;
     private PreferenceCategory mFODIconPickerCategory;
     @Override
     public void onCreate(Bundle icicle) {
@@ -55,6 +60,16 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
         final PreferenceScreen prefScreen = getPreferenceScreen();
         Resources resources = getResources();
 
+        mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+        mFingerprintVib = (SwitchPreference) findPreference(FINGERPRINT_VIB);
+        if (!mFingerprintManager.isHardwareDetected()){
+            prefScreen.removePreference(mFingerprintVib);
+        } else {
+            mFingerprintVib.setChecked((Settings.System.getInt(getContentResolver(),
+                    Settings.System.FINGERPRINT_SUCCESS_VIB, 1) == 1));
+            mFingerprintVib.setOnPreferenceChangeListener(this);
+        }
+
         mFODIconPickerCategory = findPreference(FOD_ICON_PICKER_CATEGORY);
         if (mFODIconPickerCategory != null && !FodUtils.hasFodSupport(getContext())) {
             prefScreen.removePreference(mFODIconPickerCategory);
@@ -64,6 +79,12 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
 
+        if (preference == mFingerprintVib) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.FINGERPRINT_SUCCESS_VIB, value ? 1 : 0);
+            return true;
+        }
         return false;
     }
 
