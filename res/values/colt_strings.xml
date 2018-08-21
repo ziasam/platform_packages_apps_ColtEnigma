@@ -378,5 +378,9 @@
     <string name="text_charging_symbol_dollar">Dollar</string>
     <string name="text_charging_symbol_euro">Euro</string>
     <string name="text_charging_symbol_cent">Cent</string>
-  
+
+    <!-- Navbar visibility toggle -->
+    <string name="navbar_visibility">Nav Bar</string>
+    <string name="navbar_vis_summary">Enable-disable navigation bar</string>
+
 </resources>
