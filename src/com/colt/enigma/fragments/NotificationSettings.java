@@ -25,11 +25,20 @@ import com.android.settings.SettingsPreferenceFragment;
 
 public class NotificationSettings extends SettingsPreferenceFragment {
 
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+	ContentResolver resolver = getActivity().getContentResolver();
         addPreferencesFromResource(R.xml.colt_enigma_notifications);
+	PreferenceScreen prefScreen = getPreferenceScreen();
+
+	PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!ColtUtils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(incallVibCategory);
+        }
     }
 
     @Override
