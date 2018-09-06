@@ -16,20 +16,43 @@
 
 package com.colt.enigma.fragments;
 
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreference;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.Preference.OnPreferenceChangeListener;
 import com.android.internal.logging.nano.MetricsProto;
 
 import android.os.Bundle;
+import android.content.Context;
+import android.content.ContentResolver;
+import android.os.UserHandle;
+import android.widget.Toast;
 import com.android.settings.R;
 
 import com.android.settings.SettingsPreferenceFragment;
 
+import com.colt.enigma.utils.Utils;
+
 public class NotificationSettings extends SettingsPreferenceFragment {
+
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+	ContentResolver resolver = getActivity().getContentResolver();
         addPreferencesFromResource(R.xml.colt_enigma_notifications);
+	PreferenceScreen prefScreen = getPreferenceScreen();
+
+	PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!Utils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(incallVibCategory);
+        }
     }
 
     @Override
