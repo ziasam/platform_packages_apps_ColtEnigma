@@ -319,4 +319,12 @@
     <string name="about_maintainer">Maintainer</string>
     <string name="colt_about_maintainer">The maintainer for your device is</string>
     <string name="colt_about_maintainer_summary" translatable="false">Feel the Enigma</string>
+
+    <!-- Double Tap -->
+    <string name="dtts_category_header">Double tap to sleep</string>
+
+    <!-- Double Tap Lockscreen to Sleep -->
+    <string name="double_tap_to_sleep_lockscreen_title">Lockscreen</string>
+    <string name="double_tap_to_sleep_lockscreen_summary">Double tap on the top third or bottom shortcut area of the lock screen to put the device to sleep</string>
+    
 </resources>
