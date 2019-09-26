@@ -39,7 +39,7 @@ import android.view.Surface;
 import android.view.WindowManager;
 
 public final class Utils {
-    private static final String TAG = "ColtSettingsUtils";
+    private static final String TAG = "ColtEnigmaUtils";
 
     // Device types
     private static final int DEVICE_PHONE = 0;
