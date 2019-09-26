@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-package com.colt.settings;
+package com.colt.enigma;
 
 import android.os.Bundle;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.ListPreference;
 import androidx.preference.SwitchPreference;
 import androidx.preference.Preference;
+import com.android.settings.R;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.settings.SettingsPreferenceFragment;
 
@@ -36,8 +37,8 @@ public class ColtEnigma extends SettingsPreferenceFragment {
     }
 
     @Override
-    protected int getMetricsCategory() {
-        return MetricsEvent.COLT;
+    public int getMetricsCategory() {
+        return MetricsProto.MetricsEvent.COLT;
     }
 }
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.colt.enigma.preferences;
+package com.colt.enigma.preference;
 
 import android.content.Context;
 import android.provider.Settings;
