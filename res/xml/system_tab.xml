@@ -27,6 +27,13 @@
             android:fragment="com.colt.enigma.fragments.NotificationSettings"
 	    android:summary="@string/notifications_summary" />
 
+	<!-- Colt Decorations -->
+	<com.colt.enigma.preference.CategoryColtPreference
+	    android:key="system_colors"
+            android:title="@string/system_colors"
+	    android:summary="@string/system_colors_summary"
+	    android:fragment="com.colt.enigma.fragments.Themes" />
+	
 	<!-- Misc -->
 	<com.colt.enigma.preference.CategoryColtPreference
             android:key="misc_category"
