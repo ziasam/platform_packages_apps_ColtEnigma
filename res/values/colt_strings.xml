@@ -94,6 +94,10 @@
     <string name="accent_color">Accent picker</string>
     <string name="accent_color_summary">Choose your desired accent</string>
 
+    <!-- Gradient Picker -->
+    <string name="gradient_color">Gradient picker</string>
+    <string name="gradient_summary">Gradient effect maker</string>
+
     <!-- ColtDecorators -->
     <string name="system_colors">Colt Decorations</string>
     <string name="system_colors_summary">Decoration Lab</string>
