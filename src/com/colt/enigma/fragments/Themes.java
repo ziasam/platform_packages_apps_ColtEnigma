@@ -25,6 +25,7 @@ import android.provider.Settings;
 import com.android.settings.R;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import com.android.settings.SettingsPreferenceFragment;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
@@ -32,11 +33,13 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 public class Themes extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
+    private static final String ACCENT_PRESET = "accent_preset";
     private static final String ACCENT_COLOR = "accent_color";
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
     private static final String GRADIENT_COLOR = "gradient_color";
     private static final String GRADIENT_COLOR_PROP = "persist.sys.theme.gradientcolor";
 
+    private ListPreference mAccentPreset;
     private IOverlayManager mOverlayService;
     private ColorPickerPreference mThemeColor;
     private ColorPickerPreference mGradientColor;
@@ -48,7 +51,22 @@ public class Themes extends SettingsPreferenceFragment implements
 
     mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
-        setupAccentPref();
+	mThemeColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
+        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+        try {
+            int color = "-1".equals(colorVal)
+                    ? Color.WHITE
+                    : Color.parseColor("#" + colorVal);
+            mThemeColor.setNewPreviewColor(color);
+        }
+        catch (Exception e) {
+            mThemeColor.setNewPreviewColor(Color.WHITE);
+        }
+        mThemeColor.setOnPreferenceChangeListener(this);
+
+        mAccentPreset = (ListPreference) findPreference(ACCENT_PRESET);
+        mAccentPreset.setOnPreferenceChangeListener(this);
+        checkColorPreset(colorVal);
         setupGradientPref();
     }
 
@@ -58,6 +76,18 @@ public class Themes extends SettingsPreferenceFragment implements
             int color = (Integer) objValue;
             String hexColor = String.format("%08X", (0xFFFFFFFF & color));
             SystemProperties.set(ACCENT_COLOR_PROP, hexColor);
+	checkColorPreset(hexColor);
+            try {
+                 mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
+                 mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+                 mOverlayService.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
+            } catch (RemoteException ignored) {
+            }
+        } else if (preference == mAccentPreset) {
+            String value = (String) objValue;
+            int index = mAccentPreset.findIndexOfValue(value);
+            mAccentPreset.setSummary(mAccentPreset.getEntries()[index]);
+            SystemProperties.set(ACCENT_COLOR_PROP, value);
             try {
                  mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
                  mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
@@ -78,14 +108,18 @@ public class Themes extends SettingsPreferenceFragment implements
         return true;
     }
 
-   private void setupAccentPref() {
-        mThemeColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
-        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
-        int color = "-1".equals(colorVal)
-                ? Color.WHITE
-                : Color.parseColor("#" + colorVal);
-        mThemeColor.setNewPreviewColor(color);
-        mThemeColor.setOnPreferenceChangeListener(this);
+    private void checkColorPreset(String colorValue) {
+        List<String> colorPresets = Arrays.asList(
+                getResources().getStringArray(R.array.accent_presets_values));
+        if (colorPresets.contains(colorValue)) {
+            mAccentPreset.setValue(colorValue);
+            int index = mAccentPreset.findIndexOfValue(colorValue);
+            mAccentPreset.setSummary(mAccentPreset.getEntries()[index]);
+        }
+        else {
+            mAccentPreset.setSummary(
+                    getResources().getString(R.string.custom_string));
+        }
     }
 
     private void setupGradientPref() {
