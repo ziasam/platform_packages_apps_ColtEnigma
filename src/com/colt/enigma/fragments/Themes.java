@@ -30,6 +30,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuInflater;
 
 import com.android.settings.SettingsPreferenceFragment;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
@@ -48,6 +51,9 @@ public class Themes extends SettingsPreferenceFragment implements
     private static final String GRADIENT_COLOR = "gradient_color";
     private static final String GRADIENT_COLOR_PROP = "persist.sys.theme.gradientcolor";
     private static final String PREF_THEME_SWITCH = "theme_switch";
+    private static final int MENU_RESET = Menu.FIRST;
+
+    static final int DEFAULT = 0xff1a73e8;
 
     private ListPreference mAccentPreset;
     private IOverlayManager mOverlayService;
@@ -61,15 +67,18 @@ public class Themes extends SettingsPreferenceFragment implements
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.colt_enigma_themes);
 
-    mUiModeManager = getContext().getSystemService(UiModeManager.class);
+        mUiModeManager = getContext().getSystemService(UiModeManager.class);
 
-    mOverlayService = IOverlayManager.Stub
+        PreferenceScreen prefScreen = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        mOverlayService = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
 	mThemeColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
         String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
         try {
             int color = "-1".equals(colorVal)
-                    ? Color.WHITE
+                    ? DEFAULT
                     : Color.parseColor("#" + colorVal);
             mThemeColor.setNewPreviewColor(color);
         }
@@ -83,6 +92,7 @@ public class Themes extends SettingsPreferenceFragment implements
         checkColorPreset(colorVal);
         setupGradientPref();
 	setupThemeSwitchPref();
+	setHasOptionsMenu(true);
     }
 
     @Override
@@ -257,6 +267,63 @@ public class Themes extends SettingsPreferenceFragment implements
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, MENU_RESET, 0, R.string.reset)
+                .setIcon(R.drawable.ic_menu_reset)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_RESET:
+                resetToDefault();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.theme_option_reset_title);
+        alertDialog.setMessage(R.string.theme_option_reset_message);
+        alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                resetValues();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
+    }
+
+    private void resetValues() {
+        final Context context = getContext();
+        mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
+        handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.SOLARIZED_DARK);
+        handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.BAKED_GREEN);
+        handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.CHOCO_X);
+	handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.DARK_GREY);
+        handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK);
+	handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.MATERIAL_OCEAN);
+        setupThemeSwitchPref();
+        mThemeColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
+	SystemProperties.set(ACCENT_COLOR_PROP, "-1");
+        mThemeColor.setNewPreviewColor(DEFAULT);
+        try {
+             mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
+             mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+             mOverlayService.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
+        } catch (RemoteException ignored) {
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
