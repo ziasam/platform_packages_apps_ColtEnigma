@@ -1,11 +1,12 @@
 /*
- * Copyright (C) 2017-2018 AICP
+ * Copyright (C) 2017 AICP
+ * Copyright (C) 2017-2020 The ColtOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,42 +18,23 @@
 package com.colt.enigma.preference;
 
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import com.android.settings.R;
+
+import androidx.preference.ListPreference;
 
 public class SystemSettingListPreference extends ListPreference {
-    private static final String SETTINGSNS = "http://schemas.android.com/apk/res/com.android.settings";
-    private String dependentValue = "";
+    private boolean mAutoSummary = false;
 
     public SystemSettingListPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-         if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SystemSettingListPreference);
-            dependentValue = getAttributeStringValue(attrs, SETTINGSNS, "dependentValue", "");
-            a.recycle();
-        }
         setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
     }
 
     public SystemSettingListPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-         if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SystemSettingListPreference);
-            dependentValue = getAttributeStringValue(attrs, SETTINGSNS, "dependentValue", "");
-            a.recycle();
-        }
         setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
-    }
-
-    private String getAttributeStringValue(AttributeSet attrs, String namespace, String name,
-            String defaultValue) {
-        String value = attrs.getAttributeValue(namespace, name);
-        if (value == null)
-            value = defaultValue;
-
-        return value;
     }
 
     public SystemSettingListPreference(Context context) {
@@ -62,18 +44,20 @@ public class SystemSettingListPreference extends ListPreference {
 
     @Override
     public void setValue(String value) {
-        String mOldValue = getValue();
         super.setValue(value);
-        if (!value.equals(mOldValue)) {
-            notifyDependencyChange(shouldDisableDependents());
-       }
+        if (mAutoSummary || TextUtils.isEmpty(getSummary())) {
+            setSummary(getEntry(), true);
+        }
     }
 
     @Override
-    public boolean shouldDisableDependents() {
-        boolean shouldDisableDependents = super.shouldDisableDependents();
-        String value = getValue();
-        return shouldDisableDependents || value == null || !value.equals(dependentValue);
+    public void setSummary(CharSequence summary) {
+        setSummary(summary, false);
+    }
+
+    private void setSummary(CharSequence summary, boolean autoSummary) {
+        mAutoSummary = autoSummary;
+        super.setSummary(summary);
     }
 
     @Override

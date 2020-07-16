@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,25 +20,20 @@ package com.colt.enigma.preference;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.colt.enigma.R;
+public class CustomSecureSeekBarPreference extends CustomSeekBarPreference {
 
-import com.colt.enigma.preference.SystemSettingsStore;
-
-public class SystemSettingMasterSwitchPreference extends MasterSwitchPreference {
-
-    public SystemSettingMasterSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
+    public CustomSecureSeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
-    public SystemSettingMasterSwitchPreference(Context context, AttributeSet attrs) {
+    public CustomSecureSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
-    public SystemSettingMasterSwitchPreference(Context context) {
-        super(context);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+    public CustomSecureSeekBarPreference(Context context) {
+        super(context, null);
+        setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
-
 }
