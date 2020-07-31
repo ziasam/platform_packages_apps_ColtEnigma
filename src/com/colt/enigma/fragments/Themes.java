@@ -43,7 +43,6 @@ import com.android.internal.util.colt.ColtUtils;
 import com.android.settings.dashboard.DashboardFragment;
 import android.provider.SearchIndexableResource;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.development.OverlayCategoryPreferenceController;
 import com.android.settingslib.core.AbstractPreferenceController;
@@ -53,7 +52,7 @@ import static android.os.UserHandle.USER_SYSTEM;
 import android.app.UiModeManager;
 
    public class Themes extends DashboardFragment implements
-        OnPreferenceChangeListener, Indexable {
+        OnPreferenceChangeListener {
 
     private static final String TAG = "Themes";
 
@@ -81,7 +80,7 @@ import android.app.UiModeManager;
 
     @Override
     protected int getPreferenceScreenResId() {
-        return R.xml.colt_settings_themes;
+        return R.xml.colt_enigma_themes;
     }
 
     @Override
@@ -379,7 +378,7 @@ import android.app.UiModeManager;
                             new ArrayList<SearchIndexableResource>();
 
                     SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.colt_settings_themes;
+                    sir.xmlResId = R.xml.colt_enigma_themes;
                     result.add(sir);
                     return result;
                 }

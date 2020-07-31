@@ -94,9 +94,7 @@
     <string name="color_default">Default</string>
 
     <!-- Accent Picker -->
-    <string name="accent_color">Accent picker</string>
     <string name="accent_color_summary">Choose your desired accent</string>
-    <string name="accent_summary">System wide accent picker</string>
 
     <!-- Gradient Picker -->
     <string name="gradient_color">Gradient picker</string>
@@ -249,5 +247,15 @@
 
     <!-- Customization titles -->
     <string name="themes_ui">ColtOS Themes UI</string>
-    <string name="theme_customization_sysui_icon_title">Statusbar icon</string>
+
+    <string name="themes_base">System Customisation for ColtOS</string>
+    <string name="theme_customization_sysui_icon_title">QS icons</string>
+    <string name="theme_customization_android_icon_title">StatusBar icons</string>
+    <string name="theme_customization_settings_icon_title">Settings icons</string>
+    <string name="theme_customization_systemui_title">Base Theme</string>
+    <string name="themes_color">Theming</string>
+    <string name="themes_summary">Theming section</string>
+    <string name="accent_color">Accent color - RGB picker</string>
+    <string name="accent_summary">Choose your own accent!</string>
+
 </resources>
