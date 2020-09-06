@@ -235,4 +235,11 @@
     <string name="theme_type_du_pitchblack">Pitch black</string>
     <string name="theme_type_material_ocean">Material Ocean</string>
 
+     <!-- Bottom navigation -->
+    <string name="coltos_title">ColtEnigma</string>
+    <string name="bottom_nav_system_title">System</string>
+    <string name="bottom_nav_lockscreen_title">Lockscreen</string>
+    <string name="bottom_nav_statusbar_title">Statusbar</string>
+    <string name="bottom_nav_button_title">Buttons</string>
+    <string name="bottom_nav_about_title">AboutTeam</string>
 </resources>

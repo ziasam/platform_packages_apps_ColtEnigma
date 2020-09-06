@@ -15,8 +15,16 @@
 <resources>
     <dimen name="picker_circle_preview_size">26dp</dimen>
     <dimen name="alert_dialog_padding_material">20dp</dimen>
+    <dimen name="floating_widget_view_padding">10dp</dimen>
+    <dimen name="floating_widget_window_padding">10dp</dimen>
 
     <!-- Shortcut picker -->
     <dimen name="shortcut_picker_left_padding">70dip</dimen>
 
+    <dimen name="default_corner_radii">56dp</dimen>
+    <dimen name="default_nav_item_padding">10dp</dimen>
+    <dimen name="default_nav_item_text_size">11sp</dimen>
+    <dimen name="default_nav_item_text_padding">8dp</dimen>
+    <dimen name="default_nav_item_title_max_width">80dp</dimen>
+    <dimen name="default_icon_size">24dp</dimen>
 </resources>
