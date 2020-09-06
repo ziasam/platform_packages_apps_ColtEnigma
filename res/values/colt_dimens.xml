@@ -21,20 +21,11 @@
     <!-- Shortcut picker -->
     <dimen name="shortcut_picker_left_padding">70dip</dimen>
 
-    <dimen name="ambient_light_preview_imageview_marginHorizontal">4.5dp</dimen>
-    <dimen name="ambient_light_preview_imageview_marginVertical">20dp</dimen>
-    <dimen name="ambient_light_preview_imageview_width">15dp</dimen>
-    <dimen name="ambient_light_preview_layout_height">300dp</dimen>
-    <dimen name="ambient_light_preview_layout_width">150dp</dimen>
-    <dimen name="ambient_light_preview_paddingHorizontal">50dp</dimen>
-    <dimen name="ambient_light_preview_paddingVertical">30dp</dimen>
-
-    <dimen name="floating_widget_view_padding">10dp</dimen>
-    <dimen name="floating_widget_window_padding">10dp</dimen>
-    
-    <!-- FOD icon picker -->
-    <dimen name="fod_picker_item_margin">10dp</dimen>
-    <dimen name="fod_picker_item_size">100dp</dimen>
-    <dimen name="fod_picker_item_padding">20dp</dimen>
+    <dimen name="default_corner_radii">56dp</dimen>
+    <dimen name="default_nav_item_padding">10dp</dimen>
+    <dimen name="default_nav_item_text_size">11sp</dimen>
+    <dimen name="default_nav_item_text_padding">8dp</dimen>
+    <dimen name="default_nav_item_title_max_width">80dp</dimen>
+    <dimen name="default_icon_size">24dp</dimen>
 
 </resources>
