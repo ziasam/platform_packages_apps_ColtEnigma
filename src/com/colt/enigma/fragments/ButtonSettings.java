@@ -44,7 +44,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.colt_enimga_button);
+        addPreferencesFromResource(R.xml.colt_enigma_button);
 
         final PreferenceScreen prefScreen = getPreferenceScreen();
     }
