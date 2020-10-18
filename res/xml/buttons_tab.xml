@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2017 The ABC rom
-     Copyright (C) 2018 ColtOS Project
+     Copyright (C) 2020 ColtOS Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -15,5 +15,37 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+	<!-- Colt Logo Header -->
+        <Preference 
+           android:key="colt_header_about"
+           android:layout="@layout/colt_header_about" />
+
+	<!-- Buttons -->
+	<com.colt.enigma.preference.CategoryColtPreference
+           android:key="buttonsettings_category"
+           android:title="@string/button_title"
+           android:fragment="com.colt.enigma.fragments.ButtonSettings"
+	   android:summary="@string/buttonsettings_summary" />
+
+	<!-- Navigation Bar -->
+	<com.colt.enigma.preference.CategoryColtPreference
+            android:key="navigationbar_category"
+            android:title="@string/navbar_title" 
+	    android:summary="@string/navbar_summary"
+            android:fragment="com.colt.enigma.fragments.NavbarSettings" />
+
+	<!-- Power Menu -->
+	<com.colt.enigma.preference.CategoryColtPreference
+	    android:key="powermenu_category"
+            android:title="@string/powermenu_title"
+            android:summary="@string/powermenu_summary"
+            android:fragment="com.colt.enigma.fragments.PowerMenuSettings" />
+
+	<!-- Gestures -->
+	<com.colt.enigma.preference.CategoryColtPreference
+            android:key="gestures_category"
+            android:title="@string/gestures_title" 
+	    android:summary="@string/gesture_summary"
+            android:fragment="com.colt.enigma.fragments.GestureSettings" />
 
 </PreferenceScreen>
