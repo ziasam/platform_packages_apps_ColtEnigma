@@ -105,4 +105,25 @@
     <string name="bottom_nav_statusbar_title">Statusbar</string>
     <string name="bottom_nav_button_title">Buttons</string>
     <string name="bottom_nav_about_title">AboutTeam</string>
+
+    <!-- About colt -->
+    <string name="colt_about_title">All About ColtOS</string>
+    <string name="colt_about_summary">A little info about the team</string>
+    <string name="colt_telegram_title">ColtOS Telegram Community</string>
+    <string name="colt_telegram_summary"><a href="https://t.me/ColtEnigma">Join ColtOS community here!</a></string>
+    <string name="colt_github_title">ColtOS Github</string>
+    <string name="colt_github_summary"><a href="https://www.github.com/Colt-Enigma">See the ColtOS source code here!</a></string>
+    <string name="colt_about_info_summary">ColtOS was started by me (Rakesh Batra), Nitin, Nikhil and Debojit in early 2017 and it was a small but an effective group also and we all were in learning stage that\'s why Colt as a name arrived means a Learner. To start with, ColtOS was based on LOS but we have moved to aosp base and Times changed and we found best of the team members in ColtOS Team and it\'s just like a family to me, Quality and stability is our first priority as we are dedicated to bringing you the very best that Android has to offer.</string>
+    <string name="colt_about_team">Team ColtOS</string>
+    <string name="colt_about_rakesh" translatable="false">Rakesh Batra</string>
+    <string name="colt_about_rakesh_summary" translatable="false">Founder and Lead Developer</string>
+    <string name="colt_about_nitin" translatable="false">Nitin Chobe</string>
+    <string name="colt_about_nitin_summary" translatable="false">Core Member and a Backbone</string>
+    <string name="colt_about_mrinal" translatable="false">Mrinal</string>
+    <string name="colt_about_mrinal_summary" translatable="false">Young and Passionate Core Developer</string>
+    <string name="colt_about_saurabh" translatable="false">Saurabh</string>
+    <string name="colt_about_saurabh_summary" translatable="false">Moderator and Core Developer</string>
+    <string name="about_maintainer">Maintainer</string>
+    <string name="colt_about_maintainer">The maintainer for your device is</string>
+    <string name="colt_about_maintainer_summary" translatable="false">Feel the Enigma</string>
 </resources>
