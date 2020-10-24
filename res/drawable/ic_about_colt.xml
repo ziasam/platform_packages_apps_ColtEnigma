@@ -31,14 +31,14 @@
       android:fillColor="#D6F0FE"/>
   <path
       android:pathData="M402.98,352.97L255.36,279.146L255.36,270.602L402.98,199.626L402.98,352.97Z"
-      android:fillColor="?android:attr/colorAccent">
+      android:fillColor="?android:attr/colorAccent"/>
   <path
       android:fillColor="#FF000000"
       android:pathData="M402.98,352.97L255.36,279.147L255.36,270.602L402.98,199.628L402.98,352.97Z"
       android:fillAlpha="0.2"/>
   <path
       android:pathData="M255.36,270.601L402.985,199.625L402.985,343.426L255.36,270.601Z"
-      android:fillColor="?android:attr/colorAccent">
+      android:fillColor="?android:attr/colorAccent"/>
   <path
       android:pathData="M255.36,270.601L402.985,199.625L402.985,343.426L255.36,270.601Z">
     <aapt:attr name="android:fillColor">

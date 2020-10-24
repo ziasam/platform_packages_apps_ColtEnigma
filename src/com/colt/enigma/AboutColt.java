@@ -34,7 +34,7 @@ import java.util.Objects;
 
 public class AboutColt extends DialogFragment {
 
-    public static final String TAG_ABOUT_AOSIP = "AboutColt";
+    public static final String TAG_ABOUT_COLT = "AboutColt";
 
     private Dialog dialog;
     private View view;
@@ -55,7 +55,7 @@ public class AboutColt extends DialogFragment {
     @Override
     public View onCreateView(
         LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.about_aosip, container, false);
+        view = inflater.inflate(R.layout.about_colt, container, false);
 
         if (view != null) {
             setLinkMovementMethods();
