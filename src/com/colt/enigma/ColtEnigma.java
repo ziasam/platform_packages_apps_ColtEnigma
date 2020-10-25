@@ -29,6 +29,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.android.settings.R;
@@ -154,5 +155,18 @@ public class ColtEnigma extends SettingsPreferenceFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, 0, 0, R.string.colt_about_title);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 0) {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+    AboutColt newFragment = AboutColt .newInstance();
+            newFragment.show(ft, "AboutColt");
+            return true;
+        }
+        return false;
     }
 }
