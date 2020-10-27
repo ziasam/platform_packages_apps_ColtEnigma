@@ -24,6 +24,7 @@
 	<com.colt.enigma.preference.CategoryColtPreference
 	    android:key="statusbar_category"
 	    android:title="@string/statusbar_title"
+	    android:icon="@drawable/ic_status_bar_items_background"
             android:fragment="com.colt.enigma.fragments.StatusBarSettings"
 	    android:summary="@string/statusbar_summary" />
 
@@ -32,6 +33,7 @@
 	    android:key="battery_mode" 
             android:title="@string/battery_mode_title" 
             android:summary="@string/battery_mode_summary"
+	    android:icon="@drawable/ic_battery_background"
             android:fragment="com.colt.enigma.fragments.BatteryMode" />
 
         <!-- Quick Settings -->
@@ -39,6 +41,7 @@
 	    android:key="quicksettings_category"
 	    android:title="@string/quicksettings_title"
             android:fragment="com.colt.enigma.fragments.QuickSettings"
+	    android:icon="@drawable/ic_quick_settings_background"
             android:summary="@string/quicksettings_summary" />
 
 
