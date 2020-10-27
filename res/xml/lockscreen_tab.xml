@@ -25,6 +25,7 @@
 	    android:key="lockscreen_category"
 	    android:title="@string/lockscreen_title"
 	    android:summary="@string/lockscreen_summary"	    
+	    android:icon="@drawable/ic_lockscreen_general_background"
 	    android:fragment="com.colt.enigma.fragments.LockScreenSettings" />
 
 </PreferenceScreen>

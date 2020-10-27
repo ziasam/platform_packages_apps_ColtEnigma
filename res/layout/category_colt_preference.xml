@@ -38,7 +38,9 @@
         android:id="@android:id/icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/fab"
+        android:layout_marginTop="44dp"
+        android:layout_marginLeft="50dp"
+        android:drawable="@drawable/fab"
         android:scaleType="center" />
 
     <ImageView
