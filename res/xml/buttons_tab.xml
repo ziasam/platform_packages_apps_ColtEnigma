@@ -24,6 +24,7 @@
 	<com.colt.enigma.preference.CategoryColtPreference
            android:key="buttonsettings_category"
            android:title="@string/button_title"
+	   android:icon="@drawable/ic_powerbutton_background"
            android:fragment="com.colt.enigma.fragments.ButtonSettings"
 	   android:summary="@string/buttonsettings_summary" />
 
@@ -32,6 +33,7 @@
             android:key="navigationbar_category"
             android:title="@string/navbar_title" 
 	    android:summary="@string/navbar_summary"
+	    android:icon="@drawable/ic_navigation_background"
             android:fragment="com.colt.enigma.fragments.NavbarSettings" />
 
 	<!-- Power Menu -->
@@ -39,6 +41,7 @@
 	    android:key="powermenu_category"
             android:title="@string/powermenu_title"
             android:summary="@string/powermenu_summary"
+	    android:icon="@drawable/ic_powerbutton_background"
             android:fragment="com.colt.enigma.fragments.PowerMenuSettings" />
 
 	<!-- Gestures -->
@@ -46,6 +49,7 @@
             android:key="gestures_category"
             android:title="@string/gestures_title" 
 	    android:summary="@string/gesture_summary"
+	    android:icon="@drawable/ic_gestures_background"
             android:fragment="com.colt.enigma.fragments.GestureSettings" />
 
 </PreferenceScreen>
