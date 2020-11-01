@@ -53,4 +53,10 @@
          android:summary="@string/carrier_label_category_summary"
          android:fragment="com.colt.enigma.fragments.CarrierLabelSettings" />
 
+    <Preference
+        android:key="traffic_category"
+        android:title="@string/traffic_title"
+        android:summary="@string/traffic_summary"
+        android:fragment="com.colt.enigma.fragments.TrafficIndicators"/>
+
 </PreferenceScreen>
