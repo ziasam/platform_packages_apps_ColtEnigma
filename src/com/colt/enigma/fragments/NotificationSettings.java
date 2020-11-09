@@ -30,16 +30,25 @@ import android.os.Bundle;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.os.UserHandle;
+import android.provider.Settings;
+import android.os.Bundle;
 import android.widget.Toast;
 import com.android.settings.R;
 
 import com.android.settings.SettingsPreferenceFragment;
-
+import com.android.internal.util.colt.ColtUtils;
 import com.colt.enigma.utils.Utils;
 
-public class NotificationSettings extends SettingsPreferenceFragment {
+import com.colt.enigma.preference.SystemSettingSwitchPreference;
+
+public class NotificationSettings extends SettingsPreferenceFragment
+                         implements OnPreferenceChangeListener {
 
     private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
+
+    private static final String NOTIFICATION_HEADERS = "notification_headers";
+
+    private SystemSettingSwitchPreference mNotificationHeader;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -53,10 +62,28 @@ public class NotificationSettings extends SettingsPreferenceFragment {
         if (!Utils.isVoiceCapable(getActivity())) {
             prefScreen.removePreference(incallVibCategory);
         }
+
+        mNotificationHeader = findPreference(NOTIFICATION_HEADERS); 
+        mNotificationHeader.setChecked((Settings.System.getInt(resolver,
+                Settings.System.NOTIFICATION_HEADERS, 1) == 1));
+        mNotificationHeader.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.COLT;
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+         ContentResolver resolver = getActivity().getContentResolver();
+         if (preference == mNotificationHeader) {
+          boolean value = (Boolean) newValue;
+          Settings.System.putInt(resolver,
+                    Settings.System.NOTIFICATION_HEADERS, value ? 1 : 0);
+         ColtUtils.showSystemUiRestartDialog(getContext());
+          return true;
+        }
+        return false;
     }
 }
