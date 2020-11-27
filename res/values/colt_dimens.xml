@@ -30,4 +30,10 @@
 
     <!-- Where the category icon will start (from the left) -->
     <dimen name="owlsnest_cat_icon_image_inset">6dp</dimen>
+
+    <!-- FOD icon picker -->
+    <dimen name="fod_picker_item_margin">10dp</dimen>
+    <dimen name="fod_picker_item_size">100dp</dimen>
+    <dimen name="fod_picker_item_padding">20dp</dimen>
+
 </resources>
