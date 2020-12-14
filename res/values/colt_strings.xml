@@ -623,4 +623,7 @@
     <string name="center_notification_headers_title">Center notification headers</string>
     <string name="center_notification_headers_summary">Whether to Center R style notification headers (Requires a SystemUI restart)</string>
 
+    <!-- Nightlight Fod -->
+    <string name="fod_night_light_title">Disable night light when showing FOD</string>
+    <string name="fod_night_light_summary">Disable night light on lockscreen if FOD is active. Disabling this option might affect your fingerprint accuracy with night light on.</string>
 </resources>
