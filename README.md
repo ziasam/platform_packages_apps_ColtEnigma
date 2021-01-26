@@ -1,9 +1,9 @@
-ColtOS Project
+ColtOS Project - Android 11
 ==============================
-![ColtOS](https://github.com/Colt-Enigma/platform_packages_apps_ColtCenter/blob/c10/Banner.png)
+![ColtOS](https://github.com/ColtOSTemp/platform_packages_apps_ColtEnigma/blob/c11/Banner.png)
 ==============================
 
-## Android10
+## Android11
 ## License
 
     Copyright (C) 2018 ColtOS Project
